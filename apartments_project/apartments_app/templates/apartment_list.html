@@ -1,0 +1,81 @@
+{% extends 'base.html' %}  
+{% load static %}  
+
+{% block content %}  
+<section id="apartment-list">  
+    <h1>Available Apartments</h1>  
+
+    {% if apartments %}  
+        <ul>  
+            {% for apartment in apartments %}  
+            <li class="apartment">  
+                <h2>{{ apartment.title }}</h2>  
+                <p>Description: {{ apartment.description }}</p>  
+                <p>Location: {{ apartment.location }}</p>  
+                <p>Price: ${{ apartment.price }}</p>  
+                <p>Bedrooms: {{ apartment.bedrooms }}, Bathrooms: {{ apartment.bathrooms }}</p>  
+                
+                <div class="contact-info">  
+                    <h3>Contact Information</h3>  
+                    {% for inquiry in apartment.inquiry_set.all %}  
+                        <p>Name: {{ inquiry.name }}</p>  
+                        <p>Email: <a href="mailto:{{ inquiry.email }}">{{ inquiry.email }}</a></p>  
+                        <p>Phone: {{ inquiry.phone }}</p>  
+                    {% empty %}  
+                        <p>No inquiries available.</p>  
+                    {% endfor %}  
+                </div>  
+            </li>  
+            {% empty %}  
+                <p>No apartments available.</p>  
+            {% endfor %}  
+        </ul>  
+    {% else %}  
+        <p>No apartments available at this time.</p>  
+    {% endif %}  
+</section>  
+
+<style>  
+    #apartment-list {  
+        max-width: 800px; /* Set a max width for the list */  
+        margin: auto; /* Center the list in the page */  
+        padding: 20px;   
+        border: 1px solid #ccc; /* Border around the section */  
+        border-radius: 8px; /* Rounded corners for the section */  
+    }  
+    
+    .apartment {  
+        margin-bottom: 20px; /* Space between each apartment listing */  
+        padding: 15px;  
+        border: 1px solid #e1e1e1; /* Border around each apartment */  
+        border-radius: 5px; /* Rounded corners for each listing */  
+        background-color: #f9f9f9; /* Light background color */  
+    }  
+    
+    .contact-info {  
+        margin-top: 10px; /* Space above contact information */  
+        padding: 10px;  
+        border: 1px dashed #ccc; /* Dashed border for contact info */  
+        background-color: #fff; /* White background for contact info */  
+    }  
+    
+    h1, h2, h3 {  
+        color: #333; /* Darker color for headings */  
+    }  
+    
+    p {  
+        margin: 5px 0; /* Space between paragraphs */  
+        color: #555; /* Lighter text color for paragraphs */  
+    }  
+    
+    a {  
+        color: #007bff; /* Link color */  
+        text-decoration: none; /* Remove underline from links */  
+    }  
+    
+    a:hover {  
+        text-decoration: underline; /* Underline links on hover */  
+    }  
+</style>  
+
+{% endblock %}

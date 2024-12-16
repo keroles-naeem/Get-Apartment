@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+
+    <h1>Apartment Search</h1>  
+    <form id="searchForm">  
+        <label for="property_type">Property Type:</label>  
+        <select id="property_type" name="property_type">  
+            <option value="">--Select--</option>  
+            <option value="apartment">Apartment</option>  
+            <option value="villa">Villa</option>  
+            <option value="townhouse">Townhouse</option>  
+        </select>  
+        
+        <label for="search">Search by Title:</label>  
+        <input type="text" id="search" name="search" placeholder="Enter title...">  
+        
+        <button type="submit">Search</button>  
+    </form>  
+
+    <div id="results"></div>  
+
+    <script>  
+        document.getElementById('searchForm').addEventListener('submit', function(event) {  
+            event.preventDefault();  // Prevent form submission  
+            
+            const propertyType = document.getElementById('property_type').value;  
+            const searchQuery = document.getElementById('search').value;  
+
+            // Construct the API URL  
+            let apiUrl = 'http://127.0.0.1:8000/api/apartments/?';  
+            if (propertyType) {  
+                apiUrl += `property_type=${propertyType}&`;  
+            }  
+            if (searchQuery) {  
+                apiUrl += `search=${encodeURIComponent(searchQuery)}`;  
+            }  
+
+            fetch(apiUrl)  
+                .then(response => response.json())  
+                .then(data => {  
+                    displayResults(data);  
+                })  
+                .catch(error => {  
+                    console.error('Error fetching data:', error);  
+                });  
+        });  
+
+        function displayResults(apartments) {  
+            const resultsDiv = document.getElementById('results');  
+            resultsDiv.innerHTML = '';  // Clear previous results  
+
+            if (apartments.length === 0) {  
+                resultsDiv.innerHTML = '<p>No apartments found.</p>';  
+                return;  
+            }  
+
+            apartments.forEach(apartment => {  
+                const apartmentDiv = document.createElement('div');  
+                apartmentDiv.className = 'apartment';  
+                apartmentDiv.innerHTML = `  
+                    <h3>${apartment.title}</h3>  
+                    <p>Description: ${apartment.description}</p>  
+                    <p>Location: ${apartment.location}</p>  
+                    <p>Price: $${apartment.price}</p>  
+                    <p>Bedrooms: ${apartment.bedrooms}, Bathrooms: ${apartment.bathrooms}</p>  
+                `;  
+                resultsDiv.appendChild(apartmentDiv);  
+            });  
+        }  
+    </script>  
+  </section>
+  {% endblock %}
