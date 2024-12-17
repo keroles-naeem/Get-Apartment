@@ -1,79 +1,89 @@
-{% extends 'base.html' %}  
-{% load static %}  
+{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}  
+{% block content %}
+<main>
+    <div class="container">
+        <h1>{{ apartment.name }}</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Carousel -->
+                <div id="myCarousel-{{ apartment.id }}" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% if apartment.image %}
+                        <!-- Apartment Image -->
+                        <div class="carousel-item active ratio-16x9">
+                            <img src="{{ apartment.image.url }}" alt="{{ apartment.name }}" class="img-fluid d-block w-100">
+                        </div>
+                        {% else %}
+                        <!-- Default Image if Apartment Image is Missing -->
+                        <div class="carousel-item active ratio-16x9">
+                            <img src="{% static 'img/noImage.jpg' %}" alt="Default image" class="img-fluid d-block w-100">
+                        </div>
+                        {% endif %}
 
-<main>  
-    <div class="container">  
-        <h1>{{ apartment.name }}</h1>  
-        <div class="row">  
-            <div class="col-md-6">  
-          <!-- Carousel -->  
-          <div id="myCarousel-{{apartment.id}}" class="carousel slide" data-ride="carousel{{apartment.id}}">  
-            <div class="carousel-inner">  
-                <div class="carousel-item active ratio-16x9">  
-                    <img src="{% static 'img/sample1.webp' %}" class="d-block w-100 " alt="First slide">  
-                </div>  
-                <div class="carousel-item ratio-16x9">  
-                    <img src="{% static 'img/sample2.webp' %}" class="d-block w-100 " alt="Second slide">  
-                </div>  
-                <div class="carousel-item ratio-16x9">  
-                    <img src="{% static 'img/sample3.webp' %}" class="d-block w-100 " alt="Third slide">  
-                </div>  
-            </div>  
-            <a class="carousel-control-prev" href="#myCarousel-{{apartment.id}}" role="button" data-slide="prev">  
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>  
-                <span class="sr-only">Previous</span>  
-            </a>  
-            <a class="carousel-control-next" href="#myCarousel-{{apartment.id}}" role="button" data-slide="next">  
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>  
-                <span class="sr-only">Next</span>  
-            </a>  
-            
-        </div>  
-        <!-- End of Carousel -->                  {% if apartment.image %}  
-                    <img src="{{ apartment.image.url }}" alt="{{ apartment.name }}" class="img-fluid">  
-                {% endif %}  
-            </div>  
-            <div class="col-md-6">  
-                <h3>Details</h3>  
-                <p><strong>Description:</strong> {{ apartment.description }}</p>  
-                <p><strong>Price:</strong> {{ apartment.price }}</p>  
-                <p><strong>More Details:</strong> {{ apartment.description }}</p> 
+                        <!-- Sample Images -->
+                        <div class="carousel-item ratio-16x9">
+                            <img src="{% static 'img/sample1.webp' %}" class="d-block w-100" alt="First slide">
+                        </div>
+                        <div class="carousel-item ratio-16x9">
+                            <img src="{% static 'img/sample2.webp' %}" class="d-block w-100" alt="Second slide">
+                        </div>
+                        <div class="carousel-item ratio-16x9">
+                            <img src="{% static 'img/sample3.webp' %}" class="d-block w-100" alt="Third slide">
+                        </div>
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <a class="carousel-control-prev" href="#myCarousel-{{ apartment.id }}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel-{{ apartment.id }}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!-- End of Carousel -->
+            </div>
+
+            <!-- Apartment Details -->
+            <div class="col-md-6">
+                <h3>Details</h3>
+                <p><strong>Description:</strong> {{ apartment.description }}</p>
+                <p><strong>Price:</strong> {{ apartment.price }}</p>
+                <p><strong>More Details:</strong> {{ apartment.description }}</p>
                 <p><strong>Location:</strong> {{ apartment.location }}</p>
                 <p><strong>Bedrooms:</strong> {{ apartment.bedrooms }}</p>
                 <p><strong>Bathrooms:</strong> {{ apartment.bathrooms }}</p>
-                <p><strong>Property Type:</strong> {{ apartment.property_type }}</p> 
-            </div>  
-            <div class="contact-info">  
-                <h3>Contact Information</h3>  
-                {% if inquiries %}  
-                    <ul>  
-                        {% for inquiry in inquiries %}  
-                            <li>  
-                                <p><strong>Name:</strong> {{ inquiry.name }}</p>  
-                                <p><strong>Email:</strong> <a href="mailto:{{ inquiry.email }}">{{ inquiry.email }}</a></p>  
-                                <p><strong>Phone:</strong> {{ inquiry.phone }}</p>  
-                            </li>  
-                        {% endfor %}  
-                    </ul>  
-                {% else %}  
-                    <p>No inquiries available.</p>  
-                {% endif %}  
+                <p><strong>Property Type:</strong> {{ apartment.property_type }}</p>
             </div>
-        </div>  
-        <a href="{% url 'apartment_list' %}" class="btn btn-primary mt-3">Back to Apartments</a>  
-    </div>  
-</main>  
 
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                {% if inquiries %}
+                    <ul>
+                        {% for inquiry in inquiries %}
+                            <li>
+                                <p><strong>Name:</strong> {{ inquiry.name }}</p>
+                                <p><strong>Email:</strong> 
+                                    <a href="mailto:{{ inquiry.email }}">{{ inquiry.email }}</a></p>
+                                <p><strong>Phone:</strong> {{ inquiry.phone }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No inquiries available.</p>
+                {% endif %}
+            </div>
 
+        </div>
 
+        <!-- Back Button -->
+        <a href="{% url 'apartment_list' %}" class="btn btn-primary mt-3">Back to Apartments</a>
 
-
-
-
-
-
-
+    </div>
+</main>
 
 {% endblock %}
