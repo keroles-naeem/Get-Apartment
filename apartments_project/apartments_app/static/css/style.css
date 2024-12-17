@@ -1,152 +1,230 @@
-/* Reset some default styles */  
-* {  
-    margin: 0%;  
-    padding: 0;  
-    box-sizing: border-box;  
-}  
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* General body styles */  
-body {  
-    font-family: Arial, sans-serif;  
-    background-color: #f4f4f4; /* Light background for contrast */  
-    line-height: 1.6; /* Improved readability */  
-}  
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+    color: #333;
+}
 
-/* Navigation styles */  
-nav {  
-    background-color: #ffff; /* Dark background for navigation */  
-    padding: 10px 20px; /* Padding around the navigation */  
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */  
-}  
+/* Navigation styles */
+nav {
+    background-color: #ffffff;
+    padding: 15px 5%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-nav ul {  
-    list-style: none; /* Remove bullets from the list */  
-    display: flex; /* Use flexbox for horizontal layout */  
-    align-items: center; /* Vertical alignment for items */  
-    justify-content: flex-start; /* Align items to the left */  
-    margin: 0; /* Reset margin on ul */  
-}  
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-nav li {  
-    margin-right: 20px; /* Space between list items */  
-}  
+nav li {
+    margin-right: 25px;
+}
 
-nav li img {  
-    max-width: 100px; /* Constrain logo size */  
-    height: auto; /* Maintain aspect ratio */  
-}  
+nav li:last-child {
+    margin-right: 0;
+}
 
-nav a {  
-    color: black; /* White text for links */  
-    text-decoration: none; /* Remove underline */  
-    font-size: 16px; /* Font size for navigation links */  
-    padding: 8px; /* Padding around links */  
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */  
-}  
+nav li img {
+    max-width: 120px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
 
-nav a:hover {  
-    color: #67A1A6; /* Lighter text color on hover */  
-    border-radius: 4px; /* Slightly round corners */  
+nav li img:hover {
+    transform: scale(1.05);
+}
+
+nav a {
+    color: #333;
     text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
 
-}  
+nav a:hover {
+    color: #67A1A6;
+    background-color: rgba(103, 161, 166, 0.1);
+}
 
-/* Section styling */  
-section {  
-    max-width: 800px; /* Set a max width for the list */  
-    margin: auto; /* Center the section */  
-    background: white;  
-    align-self: center;
-    padding: 25px;  
-    border-radius: 8px;  
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for elevation */  
-}  
+/* Section styling */
+section {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
 
-/* Heading styles */  
-h1, h2, h3 {  
-    color: #333; /* Darker color for headings */  
-    margin-bottom: 15px; /* Space below headings */  
-    font-family: 'Helvetica Neue', Arial, sans-serif; /* Use a more modern font */  
-}  
+/* Typography */
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+}
 
-/* Form styles */  
-form {  
-    display: flex; /* Use flexbox for form layout */  
-    flex-direction: column; /* Vertical arrangement for inputs */  
-    gap: 15px; /* Space between inputs */  
-}  
+h1 {
+    font-size: 2.5em;
+}
 
-label {  
-    font-weight: bold; /* Make labels bold */  
-}  
+h2 {
+    font-size: 2em;
+}
 
-/* Input styles */  
-select, input[type="text"], button {  
-    padding: 10px;  
-    border-radius: 5px;  
-    border: 1px solid #ddd; /* Light grey border */  
-    font-size: 16px; /* Slightly larger font for input elements */  
-    transition: border-color 0.3s;  
-}  
+h3 {
+    font-size: 1.5em;
+}
 
-select {  
-    cursor: pointer; /* Show pointer cursor for select */  
-}  
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-input[type="text"] {  
-    width: 100%; /* Full width for input */  
-}  
+label {
+    font-weight: 500;
+    color: #555;
+}
 
-/* Button styles */  
-button {  
-    background-color: #28a745; /* Green background for submit button */  
-    color: white;  
-    border: none;  
-    cursor: pointer; /* Pointer cursor on hover */  
-    transition: background-color 0.3s; /* Smooth transition for background color */   
-}  
+select, input[type="text"], button {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
 
-button:hover {  
-    background-color: #218838; /* Darker green on hover */  
-}  
+select:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: #67A1A6;
+    box-shadow: 0 0 0 2px rgba(103, 161, 166, 0.2);
+}
 
-/* Results container styles */  
-#results {  
-    margin-top: 20px; /* Space between form and results */  
-}  
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 35px;
+}
 
-/* Individual apartment item styles */  
-.apartment {  
-    background: #f8f9fa; /* Light background for apartment info */  
-    border: 1px solid #ddd; /* Border around apartment item */  
-    border-radius: 5px;   
-    padding: 15px;   
-    margin-bottom: 15px; /* Space between items */   
-}  
+input[type="text"] {
+    width: 100%;
+}
 
-/* Apartment title styles */  
-.apartment h3 {  
-    color: #007bff; /* Blue color for apartment title */  
-    margin: 0 0 10px; /* Margin for spacing */  
-}  
+/* Button styles */
+button {
+    background-color: #67A1A6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-/* Paragraph styles for the apartment description */  
-.apartment p {  
-    margin: 5px 0; /* Small margins for paragraphs */  
-    color: #555; /* Dark grey for description text */   
-}  
+button:hover {
+    background-color: #5a8f94;
+    transform: translateY(-2px);
+}
 
-/* Contact Information Styles */  
-.contact-info {  
-    margin-top: 10px; /* Space above contact information */  
-    padding: 10px;   
-    border: 1px dashed #ccc; /* Dashed border for contact info */   
-    background-color: #fff; /* White background for contact info */   
-}   
+button:active {
+    transform: translateY(0);
+}
 
-/* Link styles */  
-a {   
-    color: #007bff; /* Link color */   
-    text-decoration: none; /* Remove underline from links */   
-}   
+/* Results container styles */
+#results {
+    margin-top: 30px;
+}
 
+/* Apartment item styles */
+.apartment {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.apartment:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.apartment h3 {
+    color: #67A1A6;
+    margin: 0 0 15px;
+}
+
+.apartment p {
+    margin: 8px 0;
+    color: #555;
+}
+
+/* Contact Information Styles */
+.contact-info {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px dashed #ccc;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+}
+
+/* Link styles */
+a {
+    color: #67A1A6;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #5a8f94;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.75em;
+    }
+
+    h3 {
+        font-size: 1.3em;
+    }
+}

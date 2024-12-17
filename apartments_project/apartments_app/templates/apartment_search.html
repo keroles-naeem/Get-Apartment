@@ -3,7 +3,6 @@
 
 {% block content %}
 <section>
-
     <h1>Apartment Search</h1>  
     <form id="searchForm">  
         <label for="property_type">Property Type:</label>  
@@ -17,6 +16,12 @@
         <label for="search">Search by Title:</label>  
         <input type="text" id="search" name="search" placeholder="Enter title...">  
         
+        <label for="min_price">Minimum Price:</label>
+        <input type="number" id="min_price" name="min_price" placeholder="Min Price">
+
+        <label for="max_price">Maximum Price:</label>
+        <input type="number" id="max_price" name="max_price" placeholder="Max Price">
+        
         <button type="submit">Search</button>  
     </form>  
 
@@ -28,15 +33,26 @@
             
             const propertyType = document.getElementById('property_type').value;  
             const searchQuery = document.getElementById('search').value;  
+            const minPrice = document.getElementById('min_price').value;
+            const maxPrice = document.getElementById('max_price').value;
 
             // Construct the API URL  
-            let apiUrl = 'http://127.0.0.1:8000/api/apartments/?';  
+            let apiUrl = 'http://127.0.0.1:8000/apartments/?';  
             if (propertyType) {  
                 apiUrl += `property_type=${propertyType}&`;  
             }  
             if (searchQuery) {  
-                apiUrl += `search=${encodeURIComponent(searchQuery)}`;  
+                apiUrl += `search=${encodeURIComponent(searchQuery)}&`;  
             }  
+            if (minPrice) {
+                apiUrl += `min_price=${minPrice}&`;
+            }
+            if (maxPrice) {
+                apiUrl += `max_price=${maxPrice}&`;
+            }
+
+            // Remove trailing '&' if present
+            apiUrl = apiUrl.endsWith('&') ? apiUrl.slice(0, -1) : apiUrl;
 
             fetch(apiUrl)  
                 .then(response => response.json())  
@@ -61,7 +77,7 @@
                 const apartmentDiv = document.createElement('div');  
                 apartmentDiv.className = 'apartment';  
                 apartmentDiv.innerHTML = `  
-                      <a href="http://127.0.0.1:8000/api/apartment/${apartment.id}/"><h3>${apartment.title}</h3></a>  
+                    <a href="http://127.0.0.1:8000/apartment/${apartment.id}/"><h3>${apartment.title}</h3></a>  
                     <p>Description: ${apartment.description}</p>  
                     <p>Location: ${apartment.location}</p>  
                     <p>Price: $${apartment.price}</p>  
@@ -71,5 +87,5 @@
             });  
         }  
     </script>  
-  </section>
-  {% endblock %}
+</section>
+{% endblock %}

@@ -14,7 +14,7 @@ from .views import (
 
 urlpatterns = [  
     path('search/', apartment_search_view, name='apartment_search'),  
-    path('list/', apartment_list, name='apartment_list'),  
+    path('', apartment_list, name='apartment_list'),  
     path('apartment/<int:apartment_id>/', apartment_detail, name='apartment_detail'),  
     path('apartments/', ApartmentListCreateAPIView.as_view(), name='apartment-list-create'),  
     path('apartments/<int:pk>/', ApartmentRetrieveUpdateDestroyAPIView.as_view(), name='apartment-detail'),  
