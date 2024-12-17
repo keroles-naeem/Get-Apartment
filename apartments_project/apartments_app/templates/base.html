@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}  
 
 <!DOCTYPE html>  
 <html lang="en">  
@@ -7,24 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Apartment Search</title>  
 
-    
-    <!-- Include your CSS files here -->
-    <link
-      rel="preload"
-      as="style"
-      href="{% static 'css/style.css' %}"
-      onload="this.rel = 'stylesheet'"
-    />
+    <!-- Preload CSS for better performance -->  
+    <link rel="preload" as="style" href="{% static 'css/style.css' %}" onload="this.rel='stylesheet'" />  
+    <noscript>  
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Fallback for browsers with JS disabled -->  
+    </noscript>  
 
+    <!-- Bootstrap CSS -->  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
 </head>  
 
-  <body>
-    <!--Header content-->
-    {% include 'partials/_header.html' %}
+<body>  
+    <!-- Header content -->  
+    {% include 'partials/_header.html' %}  
 
-    <main>{% block content %} {% endblock %}</main>
+    <main>  
+        {% block content %} {% endblock %}  
+    </main>  
 
-    <!--Footer content-->
-    {% include 'partials/_footer.html' %} 
-  </body>
+    <!-- Footer content -->  
+    {% include 'partials/_footer.html' %}  
+
+    <!-- jQuery and Bootstrap JS -->  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+
+    <!-- Optional: Custom script section for future scripts -->  
+    {% block scripts %} {% endblock %}  
+</body>  
 </html>

@@ -1,4 +1,4 @@
-/* Reset styles */  
+/* Reset some default styles */  
 * {  
     margin: 0;  
     padding: 0;  
@@ -7,26 +7,65 @@
 
 /* General body styles */  
 body {  
-    font-family: Arial, sans-serif; /* Use system default sans-serif font */  
-    background-color: #f4f4f4; /* Light background for better visibility */  
-    line-height: 1.6; /* Improve readability with line height */  
+    font-family: Arial, sans-serif;  
+    background-color: #f4f4f4; /* Light background for contrast */  
+    line-height: 1.6; /* Improved readability */  
+}  
+
+/* Navigation styles */  
+nav {  
+    background-color: #ffff; /* Dark background for navigation */  
+    padding: 10px 20px; /* Padding around the navigation */  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */  
+}  
+
+nav ul {  
+    list-style: none; /* Remove bullets from the list */  
+    display: flex; /* Use flexbox for horizontal layout */  
+    align-items: center; /* Vertical alignment for items */  
+    justify-content: flex-start; /* Align items to the left */  
+    margin: 0; /* Reset margin on ul */  
+}  
+
+nav li {  
+    margin-right: 20px; /* Space between list items */  
+}  
+
+nav li img {  
+    max-width: 100px; /* Constrain logo size */  
+    height: auto; /* Maintain aspect ratio */  
+}  
+
+nav a {  
+    color: black; /* White text for links */  
+    text-decoration: none; /* Remove underline */  
+    font-size: 16px; /* Font size for navigation links */  
+    padding: 8px; /* Padding around links */  
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */  
+}  
+
+nav a:hover {  
+    color: #67A1A6; /* Lighter text color on hover */  
+    border-radius: 4px; /* Slightly round corners */  
+    text-decoration: none;
+
 }  
 
 /* Section styling */  
 section {  
-    max-width: 600px;  
-    margin: 20px auto; /* Center the section with top/bottom margin */  
-    background: white; /* White background for clear contrast */  
-    padding: 20px; /* Inner padding for content */  
-    border-radius: 8px; /* Rounded corners */  
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for elevation */  
+    max-width: 800px; /* Set a max width for the list */  
+    margin: auto; /* Center the section */  
+    background: white;  
+    padding: 20px;  
+    border-radius: 8px;  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for elevation */  
 }  
 
 /* Heading styles */  
-h1 {  
-    text-align: center; /* Center the title */  
-    color: #333; /* Dark grey color for better readability */  
-    margin-bottom: 20px; /* Space below the heading */  
+h1, h2, h3 {  
+    color: #333; /* Darker color for headings */  
+    margin-bottom: 15px; /* Space below headings */  
+    font-family: 'Helvetica Neue', Arial, sans-serif; /* Use a more modern font */  
 }  
 
 /* Form styles */  
@@ -36,29 +75,23 @@ form {
     gap: 15px; /* Space between inputs */  
 }  
 
-/* Label styles */  
 label {  
     font-weight: bold; /* Make labels bold */  
-    color: #555;  /* Dark grey color for accessibility */  
 }  
 
-/* Input, select menu and button styles */  
-input[type="text"],  
-select,  
-button {  
-    padding: 10px; /* Uniform padding */  
-    border-radius: 5px; /* Rounded corners */  
+/* Input styles */  
+select, input[type="text"], button {  
+    padding: 10px;  
+    border-radius: 5px;  
     border: 1px solid #ddd; /* Light grey border */  
-    font-size: 16px; /* Font size for inputs */  
-    transition: border-color 0.3s; /* Smooth transition for border color */  
+    font-size: 16px; /* Slightly larger font for input elements */  
+    transition: border-color 0.3s;  
 }  
 
-/* Select menu specific styles */  
 select {  
-    cursor: pointer; /* Pointer cursor for select */  
+    cursor: pointer; /* Show pointer cursor for select */  
 }  
 
-/* Input text */  
 input[type="text"] {  
     width: 100%; /* Full width for input */  
 }  
@@ -66,13 +99,12 @@ input[type="text"] {
 /* Button styles */  
 button {  
     background-color: #28a745; /* Green background for submit button */  
-    color: white; /* White text */  
-    border: none; /* Remove border */  
+    color: white;  
+    border: none;  
     cursor: pointer; /* Pointer cursor on hover */  
-    transition: background-color 0.3s; /* Smooth transition for background color */  
+    transition: background-color 0.3s; /* Smooth transition for background color */   
 }  
 
-/* Button hover effect */  
 button:hover {  
     background-color: #218838; /* Darker green on hover */  
 }  
@@ -86,80 +118,34 @@ button:hover {
 .apartment {  
     background: #f8f9fa; /* Light background for apartment info */  
     border: 1px solid #ddd; /* Border around apartment item */  
-    border-radius: 5px; /* Rounded corners */  
-    padding: 15px; /* Inner padding */  
-    margin-bottom: 15px; /* Space between items */  
+    border-radius: 5px;   
+    padding: 15px;   
+    margin-bottom: 15px; /* Space between items */   
 }  
 
 /* Apartment title styles */  
 .apartment h3 {  
     color: #007bff; /* Blue color for apartment title */  
-    margin: 0 0 10px; /* Margin for spacing below title */  
+    margin: 0 0 10px; /* Margin for spacing */  
 }  
 
 /* Paragraph styles for the apartment description */  
 .apartment p {  
     margin: 5px 0; /* Small margins for paragraphs */  
-    color: #555; /* Dark grey for description text */  
+    color: #555; /* Dark grey for description text */   
 }  
 
-/* Navigation styles */  
-nav {  
-    background-color: #333; /* Dark background for navigation */  
-    padding: 10px 20px; /* Padding around the navigation */  
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */  
-}  
-
-/* Navigation list styles */  
-nav ul {  
-    list-style: none; /* Remove bullets from the list */  
-    display: flex; /* Use flexbox for horizontal layout */  
-    align-items: center; /* Vertical alignment for items */  
-    justify-content: flex-start; /* Align items to the left */  
-}  
-
-/* List item styles */  
-nav li {  
-    margin-right: 20px; /* Space between list items */  
-}  
-
-/* Logo styles */  
-nav li img {  
-    max-width: 100px; /* Constrain logo size */  
-    height: auto; /* Maintain aspect ratio */  
-}  
+/* Contact Information Styles */  
+.contact-info {  
+    margin-top: 10px; /* Space above contact information */  
+    padding: 10px;   
+    border: 1px dashed #ccc; /* Dashed border for contact info */   
+    background-color: #fff; /* White background for contact info */   
+}   
 
 /* Link styles */  
-nav a {  
-    color: white; /* White text for links */  
-    text-decoration: none; /* Remove underline */  
-    font-size: 16px; /* Font size for navigation links */  
-    padding: 8px; /* Padding around links */  
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */  
-}  
+a {   
+    color: #007bff; /* Link color */   
+    text-decoration: none; /* Remove underline from links */   
+}   
 
-/* Hover effect for links */  
-nav a:hover {  
-    background-color: #555; /* Darker background on hover */  
-    color: #ddd; /* Lighter text color on hover */  
-    border-radius: 4px; /* Slightly round corners for visual feedback */  
-}
-footer {  
-    background-color: #f8f9fa; /* Light grey background */  
-    color: #333; /* Dark text color for better contrast */  
-    display: flex; /* Use flexbox for layout */  
-    justify-content: space-between; /* Space out logo and copyright text */  
-    align-items: center; /* Center items vertically */  
-    padding: 20px; /* Padding for some space around the content */  
-    border-top: 1px solid #e7e7e7; /* Light top border for separation */  
-}  
-
-.footer-logo img {  
-    max-width: 150px; /* Limit the logo width */  
-    height: auto; /* Maintain aspect ratio */  
-}  
-
-.footer-copy p {  
-    margin: 0; /* Remove default margin */  
-    font-size: 14px; /* Set font size for the copyright text */  
-}
