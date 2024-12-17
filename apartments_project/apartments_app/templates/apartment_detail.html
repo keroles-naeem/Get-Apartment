@@ -1,0 +1,53 @@
+{% extends 'base.html' %}  
+{% load static %}  
+
+{% block content %}  
+
+<main>  
+    <div class="container">  
+        <h1>{{ apartment.name }}</h1>  
+        <div class="row">  
+            <div class="col-md-6">  
+                <!-- You can add an image if you have one -->  
+                {% if apartment.image %}  
+                    <img src="{{ apartment.image.url }}" alt="{{ apartment.name }}" class="img-fluid">  
+                {% endif %}  
+            </div>  
+            <div class="col-md-6">  
+                <h3>Details</h3>  
+                <p><strong>Description:</strong> {{ apartment.description }}</p>  
+                <p><strong>Price:</strong> {{ apartment.price }}</p>  
+                <p><strong>More Details:</strong> {{ apartment.details }}</p>  
+            </div>  
+            <div class="contact-info">  
+                <h3>Contact Information</h3>  
+                {% if inquiries %}  
+                    <ul>  
+                        {% for inquiry in inquiries %}  
+                            <li>  
+                                <p><strong>Name:</strong> {{ inquiry.name }}</p>  
+                                <p><strong>Email:</strong> <a href="mailto:{{ inquiry.email }}">{{ inquiry.email }}</a></p>  
+                                <p><strong>Phone:</strong> {{ inquiry.phone }}</p>  
+                            </li>  
+                        {% endfor %}  
+                    </ul>  
+                {% else %}  
+                    <p>No inquiries available.</p>  
+                {% endif %}  
+            </div>
+        </div>  
+        <a href="{% url 'apartment_list' %}" class="btn btn-primary mt-3">Back to Apartments</a>  
+    </div>  
+</main>  
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
