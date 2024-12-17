@@ -14,7 +14,13 @@
                 <label for="{{ apartment_form.title.id_for_label }}" class="form-label">{{ apartment_form.title.label }}</label>  
                 {{ apartment_form.title }}  
                 {{ apartment_form.title.errors }}  
-            </div>   
+            </div> 
+            <div class="form-group">  
+                <label for="{{ apartment_form.image.id_for_label }}" class="form-label">{{ apartment_form.image.label }}</label>  
+                {{ apartment_form.image }}  
+                {{ apartment_form.image.errors }}  
+            </div> 
+
             <div class="form-group">  
                 <label for="{{ apartment_form.description.id_for_label }}" class="form-label">{{ apartment_form.description.label }}</label>  
                 {{ apartment_form.description }}  

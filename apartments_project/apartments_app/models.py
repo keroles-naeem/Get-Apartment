@@ -16,7 +16,7 @@ class Apartment(models.Model):
     bedrooms = models.IntegerField()  
     bathrooms = models.IntegerField()  
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES, default='apartment')  
-    # image = models.ImageField(upload_to='apartments/', blank=True, null=True)  
+    image = models.ImageField(upload_to='apartments/', blank=True, null=True)  
 
 
     def __str__(self):  

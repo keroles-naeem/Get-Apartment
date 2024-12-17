@@ -7,7 +7,7 @@ from .models import Apartment, Inquiry
 class ApartmentForm(forms.ModelForm):
     class Meta:
         model = Apartment
-        fields = ['title', 'description', 'price', 'location', 'bedrooms', 'bathrooms', 'property_type']
+        fields = ['title', 'description', 'price', 'location', 'bedrooms', 'bathrooms', 'property_type', 'image']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apartment Title'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Description'}),
@@ -16,6 +16,7 @@ class ApartmentForm(forms.ModelForm):
             'bedrooms': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Bedrooms'}),
             'bathrooms': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Bathrooms'}),
             'property_type': forms.Select(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control-file '}),
         }
 
 class InquiryForm(forms.ModelForm):

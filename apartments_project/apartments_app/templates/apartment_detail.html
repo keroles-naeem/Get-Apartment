@@ -8,8 +8,30 @@
         <h1>{{ apartment.name }}</h1>  
         <div class="row">  
             <div class="col-md-6">  
-                <!-- You can add an image if you have one -->  
-                {% if apartment.image %}  
+          <!-- Carousel -->  
+          <div id="myCarousel-{{apartment.id}}" class="carousel slide" data-ride="carousel{{apartment.id}}">  
+            <div class="carousel-inner">  
+                <div class="carousel-item active ratio-16x9">  
+                    <img src="{% static 'img/sample1.webp' %}" class="d-block w-100 " alt="First slide">  
+                </div>  
+                <div class="carousel-item ratio-16x9">  
+                    <img src="{% static 'img/sample2.webp' %}" class="d-block w-100 " alt="Second slide">  
+                </div>  
+                <div class="carousel-item ratio-16x9">  
+                    <img src="{% static 'img/sample3.webp' %}" class="d-block w-100 " alt="Third slide">  
+                </div>  
+            </div>  
+            <a class="carousel-control-prev" href="#myCarousel-{{apartment.id}}" role="button" data-slide="prev">  
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>  
+                <span class="sr-only">Previous</span>  
+            </a>  
+            <a class="carousel-control-next" href="#myCarousel-{{apartment.id}}" role="button" data-slide="next">  
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>  
+                <span class="sr-only">Next</span>  
+            </a>  
+            
+        </div>  
+        <!-- End of Carousel -->                  {% if apartment.image %}  
                     <img src="{{ apartment.image.url }}" alt="{{ apartment.name }}" class="img-fluid">  
                 {% endif %}  
             </div>  
@@ -17,7 +39,11 @@
                 <h3>Details</h3>  
                 <p><strong>Description:</strong> {{ apartment.description }}</p>  
                 <p><strong>Price:</strong> {{ apartment.price }}</p>  
-                <p><strong>More Details:</strong> {{ apartment.details }}</p>  
+                <p><strong>More Details:</strong> {{ apartment.description }}</p> 
+                <p><strong>Location:</strong> {{ apartment.location }}</p>
+                <p><strong>Bedrooms:</strong> {{ apartment.bedrooms }}</p>
+                <p><strong>Bathrooms:</strong> {{ apartment.bathrooms }}</p>
+                <p><strong>Property Type:</strong> {{ apartment.property_type }}</p> 
             </div>  
             <div class="contact-info">  
                 <h3>Contact Information</h3>  

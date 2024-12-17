@@ -61,7 +61,7 @@
                 const apartmentDiv = document.createElement('div');  
                 apartmentDiv.className = 'apartment';  
                 apartmentDiv.innerHTML = `  
-                    <h3>${apartment.title}</h3>  
+                      <a href="http://127.0.0.1:8000/api/apartment/${apartment.id}/"><h3>${apartment.title}</h3></a>  
                     <p>Description: ${apartment.description}</p>  
                     <p>Location: ${apartment.location}</p>  
                     <p>Price: $${apartment.price}</p>  

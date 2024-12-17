@@ -42,17 +42,10 @@ def apartment_detail(request, apartment_id):
     apartment = get_object_or_404(Apartment, id=apartment_id)
     inquiries = apartment.inquiry_set.all()
     print(inquiries)
-    # Calculate average rating if available
-    average_rating = apartment.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating'] if hasattr(apartment, 'reviews') else None
-
-    # Check if the user can make an inquiry
-    can_inquire = request.user.is_authenticated
-
     return render(request, 'apartment_detail.html', {
         'apartment': apartment,
         'inquiries': inquiries,
-        'average_rating': average_rating,
-        'can_inquire': can_inquire,
+
     })
 def apartment_search_view(request):  
     return render(request, 'apartment_search.html')
