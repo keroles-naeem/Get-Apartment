@@ -1,10 +1,10 @@
 from rest_framework import generics  
 from .models import Apartment, Inquiry  
 from .serializers import ApartmentSerializer, InquirySerializer  
-from django_filters import rest_framework as filters  
-from django.shortcuts import render  
+from django_filters import rest_framework as filters    
 from django.core.paginator import Paginator  
-from django.shortcuts import render, get_object_or_404  
+from django.shortcuts import render,redirect,get_object_or_404  
+from .forms import ApartmentForm, InquiryForm  
 
 
 # Define a filter set for filtering Apartment objects  
@@ -66,3 +66,30 @@ def apartment_list(request):
     apartments = paginator.get_page(page_number)  # Get the apartments for that page  
 
     return render(request, 'apartment_list.html', {'apartments': apartments})  
+
+
+def add_apartment(request):  
+    if request.method == 'POST':  
+        print ("i passed here")
+        apartment_form = ApartmentForm(request.POST)  
+        inquiry_form = InquiryForm(request.POST)  
+
+        if apartment_form.is_valid() and inquiry_form.is_valid():  
+            # First, save the apartment  
+            apartment = apartment_form.save()  
+
+            # Then, create the inquiry associated with the new apartment  
+            inquiry = inquiry_form.save(commit=False)  
+            inquiry.apartment = apartment  # Link the inquiry to the newly created apartment  
+            inquiry.save()  
+
+            return redirect('apartment_list')  # Redirect to a success page or apartment list  
+
+    else:  
+        apartment_form = ApartmentForm()  
+        inquiry_form = InquiryForm()  
+
+    return render(request, 'add_apartment.html', {  
+        'apartment_form': apartment_form,  
+        'inquiry_form': inquiry_form,  
+    })  

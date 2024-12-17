@@ -6,7 +6,8 @@ from .views import (
     InquiryRetrieveUpdateDestroyAPIView,
     apartment_search_view,
     apartment_list,
-    apartment_detail
+    apartment_detail,
+    add_apartment
 )  
 
 urlpatterns = [  
@@ -17,4 +18,6 @@ urlpatterns = [
     path('apartments/<int:pk>/', ApartmentRetrieveUpdateDestroyAPIView.as_view(), name='apartment-detail'),  
     path('inquiries/', InquiryListCreateAPIView.as_view(), name='inquiry-list-create'),  
     path('inquiries/<int:pk>/', InquiryRetrieveUpdateDestroyAPIView.as_view(), name='inquiry-detail'),  
+    path('add/', add_apartment, name='add_apartment'),  
+
 ]
