@@ -8,21 +8,20 @@ from .forms import ApartmentForm, InquiryForm
 
 
 # Define a filter set for filtering Apartment objects  
-class ApartmentFilter(filters.FilterSet):  
-    property_type = filters.ChoiceFilter(choices=Apartment.PROPERTY_TYPE_CHOICES)  
-    search = filters.CharFilter(field_name='title', lookup_expr='icontains', label='Search')  # New search filter  
+class ApartmentFilter(filters.FilterSet):
+    property_type = filters.ChoiceFilter(choices=Apartment.PROPERTY_TYPE_CHOICES)
+    search = filters.CharFilter(field_name='title', lookup_expr='icontains', label='Search')
+    min_price = filters.NumberFilter(field_name='price', lookup_expr='gte')
+    max_price = filters.NumberFilter(field_name='price', lookup_expr='lte')
 
-    class Meta:  
-        model = Apartment  
-        fields = ['property_type', 'search']  # Expose property_type and search for filtering  
-
-# View for listing and creating Apartment objects with filtering capabilities  
-class ApartmentListCreateAPIView(generics.ListCreateAPIView):  
-    queryset = Apartment.objects.all()  
-    serializer_class = ApartmentSerializer  
-    filter_backends = (filters.DjangoFilterBackend,)  # Enable filtering  
-    filterset_class = ApartmentFilter  # Link the filter set to the view 
-     
+    class Meta:
+        model = Apartment
+        fields = ['property_type', 'search', 'min_price', 'max_price']
+class ApartmentListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Apartment.objects.all()
+    serializer_class = ApartmentSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = ApartmentFilter
 
 # View for retrieving, updating, or deleting a specific Apartment object  
 class ApartmentRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):  
@@ -55,7 +54,7 @@ def apartment_search_view(request):
 
 def apartment_list(request):  
     apartment_list = Apartment.objects.all()  # Get all apartments  
-    paginator = Paginator(apartment_list, 4)  # Show 10 apartments per page  
+    paginator = Paginator(apartment_list, 4)  # Show 4 apartments per page  
 
     page_number = request.GET.get('page')  # Get the page number from the URL  
     apartments = paginator.get_page(page_number)  # Get the apartments for that page  
